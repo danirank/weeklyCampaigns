@@ -3,8 +3,19 @@ name: build-ci
 on: [push, pull_request]
 
 jobs:
-  ping:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Say hello
-        run: echo "Actions is wired up ✅"
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore
+        run: dotnet restore ./src/weeklyCampaigns.sln
+
+      - name: Build
+        run: dotnet build ./src/weeklyCampaigns.sln --configuration Release --no-restore
