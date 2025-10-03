@@ -1,0 +1,46 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Show dotnet info
+        run: dotnet --info
+
+      - name: Restore & Build (only if solution exists)
+        shell: bash
+        run: |
+          SOLUTIONS="$(git ls-files '*.sln' || true)"
+          if [ -n "$SOLUTIONS" ]; then
+            echo "Solutions found:"
+            echo "$SOLUTIONS"
+            dotnet restore
+            dotnet build --configuration Release --no-restore
+          else
+            echo "No .sln files found. Skipping build for now."
+          fi
+
+      - name: Test (only if test projects exist)
+        shell: bash
+        run: |
+          TEST_PROJECTS="$(git ls-files '*Tests/*.csproj' '*Tests.csproj' || true)"
+          if [ -n "$TEST_PROJECTS" ]; then
+            echo "Test projects found:"
+            echo "$TEST_PROJECTS"
+            dotnet test --configuration Release --no-build
+          else
+            echo "No test projects found. Skipping tests."
+          fi
