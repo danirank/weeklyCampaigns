@@ -15,7 +15,7 @@ jobs:
           dotnet-version: '8.0.x'
 
       - name: Restore
-        run: dotnet restore ./src/Kampanjer.sln
+        run: dotnet restore ./src/weeklyCampaigns.sln
 
       - name: Build
-        run: dotnet build ./src/Kampanjer.sln --configuration Release --no-restore
+        run: dotnet build ./src/weeklyCampaigns.sln --configuration Release --no-restore
