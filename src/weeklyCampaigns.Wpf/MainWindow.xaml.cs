@@ -20,5 +20,10 @@ namespace weeklyCampaigns.Wpf
         {
             InitializeComponent();
         }
+
+        private void MenuItem_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

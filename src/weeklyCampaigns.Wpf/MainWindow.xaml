@@ -5,8 +5,61 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:weeklyCampaigns.Wpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="🛒Weekly campaigns" Height="450" Width="800">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <!--Filter soter and fetch-->
+            <ColumnDefinition Width="*" />
+
+
+
+            <!-- For date format hint -->
+            <ColumnDefinition Width="Auto" />
+
+
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Column="4" Margin="5" HorizontalAlignment="Right"  Text="yyyy-mm-dd"/>
+
+        <!--Menu filter store and fetch button-->
+        <Grid Grid.Column="0" Grid.Row="0">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <CheckBox Grid.Column="0" Content="Ica" Margin="5" IsChecked="True"/>
+            <CheckBox Grid.Column="1" Content="Coop" Margin="5" IsChecked="True"/>
+            <CheckBox Grid.Column="2" Content="Lidl" Margin="5" IsChecked="True"/>
+            <CheckBox Grid.Column="3" Content="Willyls" Margin="5" IsChecked="True"/>
+            <Button Grid.Column="4" Content="Fetch campaigns" Margin="5"/>
+        </Grid>
+
+
+        <!--Menu for filtering products-->
+        <Border Grid.Row="2" >
+            <Menu Background="Transparent">
+                <ContentControl Content="Alla"/>
+                <ContentControl Content="Kött"/>
+                <ContentControl Content="Frukt "/>
+                <ContentControl Content="Mejeri"/>
+            </Menu>
+        </Border>
+
+
 
     </Grid>
 </Window>
